@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "Mando Tiger1"

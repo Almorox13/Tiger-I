@@ -77,32 +77,32 @@ void loop() {
 
 void norte(){
   
-     motor.rotate(20,CCW);
-     motor2.rotate(20,CCW);
+     motor.rotate(10,CCW);
+     motor2.rotate(10,CCW);
 
       delay(100);
 }
 
 void sur(){
   
-    motor.rotate(20,CW);
-    motor2.rotate(20,CW);
+    motor.rotate(10,CW);
+    motor2.rotate(10,CW);
 
       delay(100);
 }
 
 void este(){
   
-      motor.rotate(20,CCW);
-      motor2.rotate(20,CW);
+      motor.rotate(10,CCW);
+      motor2.rotate(10,CW);
 
       delay(100);
 }
 
 void oeste(){
 
-      motor.rotate(20,CW);
-      motor2.rotate(20,CCW);
+      motor.rotate(10,CW);
+      motor2.rotate(10,CCW);
       delay(100);
 }
 

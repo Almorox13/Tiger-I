@@ -47,10 +47,12 @@ import java.nio.ByteBuffer;
 public final class MainActivity extends BaseActivity implements CameraDialog.CameraDialogParent {
 
 	private final Object mSync = new Object();
+
     // for accessing USB and USB camera
     private USBMonitor mUSBMonitor;
 	private UVCCamera mUVCCamera;
 	private SimpleUVCCameraTextureView mUVCCameraView;
+
 	// for open&start / stop&close camera preview
 	private ImageButton mCameraButton;
 	private Surface mPreviewSurface;

@@ -41,76 +41,153 @@ void loop() {
 
   if(correcto == true){
     
-    while (rec == 'N') {
-
-      norte();
+    while (rec == '0') {  //Gatillos x sin presión
       leer();
+      motor.stop();
     }
-    parar();
-
-    while (rec == 'S') {
-
-      sur();
+    while (rec == '1') {  //Gatillo y sin presión
       leer();
-
+      motor.stop();
     }
-    parar();
 
-    while (rec == 'E') {
+////////////////////////////////////////////////////
 
-      este();
-      leer();
-
+    while (rec == 'a') {
+      leer(); 
+      motor2.rotate(0, CCW); 
+      motor.rotate(0, CCW);  
     }
-    parar();
-
-    while (rec == 'O') {
-
-      oeste();
-      leer();
-
+    while (rec == 'b') {
+      leer(); 
+      motor2.rotate(0, CCW); 
+      motor.rotate(5, CCW);  
     }
-    parar();
-  
+    while (rec == 'c') {
+      leer(); 
+      motor2.rotate(0, CCW); 
+      motor.rotate(10, CCW);  
+    }
+    while (rec == 'd') {
+      leer(); 
+      motor2.rotate(0, CCW); 
+      motor.rotate(15, CCW);  
+    }
+    while (rec == 'e') {
+      leer(); 
+      motor2.rotate(0, CCW); 
+      motor.rotate(20, CCW);  
+    }
+
+////////////////////////////////////////////////////
+    
+    while (rec == 'f') {
+      leer(); 
+      motor2.rotate(5, CCW); 
+      motor.rotate(0, CCW);  
+    }
+    while (rec == 'g') {
+      leer(); 
+      motor2.rotate(5, CCW); 
+      motor.rotate(5, CCW);  
+    }
+    while (rec == 'h') {
+      leer(); 
+      motor2.rotate(5, CCW); 
+      motor.rotate(10, CCW);  
+    }
+    while (rec == 'i') {
+      leer(); 
+      motor2.rotate(5, CCW); 
+      motor.rotate(15, CCW);  
+    }
+    while (rec == 'j') {
+      leer(); 
+      motor2.rotate(5, CCW); 
+      motor.rotate(20, CCW);  
+    }
+
+////////////////////////////////////////////////////
+    
+    while (rec == 'k') {
+      leer(); 
+      motor2.rotate(10, CCW); 
+      motor.rotate(0, CCW);  
+    }
+    while (rec == 'l') {
+      leer(); 
+      motor2.rotate(10, CCW); 
+      motor.rotate(5, CCW);  
+    }
+    while (rec == 'm') {
+      leer(); 
+      motor2.rotate(10, CCW); 
+      motor.rotate(10, CCW);  
+    }
+    while (rec == 'n') {
+      leer(); 
+      motor2.rotate(10, CCW); 
+      motor.rotate(15, CCW);  
+    }while (rec == 'o') {
+      leer(); 
+      motor2.rotate(10, CCW); 
+      motor.rotate(20, CCW);  
+    }
+
+////////////////////////////////////////////////////
+
+    while (rec == 'p') {
+      leer(); 
+      motor2.rotate(15, CCW); 
+      motor.rotate(0, CCW);  
+    }
+    while (rec == 'q') {
+      leer(); 
+      motor2.rotate(15, CCW); 
+      motor.rotate(5, CCW);  
+    }
+    while (rec == 'r') {
+      leer(); 
+      motor2.rotate(15, CCW); 
+      motor.rotate(10, CCW);  
+    }
+    while (rec == 's') {
+      leer(); 
+      motor2.rotate(15, CCW); 
+      motor.rotate(15, CCW);  
+    }while (rec == 't') {
+      leer(); 
+      motor2.rotate(15, CCW); 
+      motor.rotate(20, CCW);  
+    }
+
+////////////////////////////////////////////////////
+    
+    while (rec == 'u') {
+      leer(); 
+      motor2.rotate(20, CCW); 
+      motor.rotate(0, CCW);  
+    }
+    while (rec == 'v') {
+      leer(); 
+      motor2.rotate(20, CCW); 
+      motor.rotate(5, CCW);  
+    }
+    while (rec == 'w') {
+      leer(); 
+      motor2.rotate(20, CCW); 
+      motor.rotate(10, CCW);  
+    }
+    while (rec == 'x') {
+      leer(); 
+      motor2.rotate(20, CCW); 
+      motor.rotate(15, CCW);  
+    }
+    while (rec == 'y') {
+      leer(); 
+      motor2.rotate(20,CCW); 
+      motor.rotate(20,CCW);  
+    }
   }
-}
-
-void norte(){
-  
-     motor.rotate(10,CCW);
-     motor2.rotate(10,CCW);
-
-      delay(100);
-}
-
-void sur(){
-  
-    motor.rotate(10,CW);
-    motor2.rotate(10,CW);
-
-      delay(100);
-}
-
-void este(){
-  
-      motor.rotate(10,CCW);
-      motor2.rotate(10,CW);
-
-      delay(100);
-}
-
-void oeste(){
-
-      motor.rotate(10,CW);
-      motor2.rotate(10,CCW);
-      delay(100);
-}
-
-void parar(){
-
-     motor.stop();
-     motor2.stop();
-     delay(50);
 }
 
 bool leer(){

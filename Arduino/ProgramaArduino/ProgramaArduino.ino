@@ -20,6 +20,7 @@
 #define debug 1 //change to 0 to hide serial monitor debugging information or set to 1 to view
 bool correcto = false;
 char rec;
+int power = 5;
 
 #include <RobojaxBTS7960.h>
 #include <SoftwareSerial.h>
@@ -38,155 +39,60 @@ void setup() {
 void loop() {
   
   leer();
+  power = 5;
+  if (correcto == true) {
 
-  if(correcto == true){
-    
-    while (rec == '0') {  //Gatillos x sin presión
-      leer();
-      motor.stop();
-    }
-    while (rec == '1') {  //Gatillo y sin presión
-      leer();
-      motor.stop();
-    }
+      while (rec == '0') {  //Detenido
+          leer();
+          //motor.stop();
+          //motor2.stop();
+      }
+      ////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////
+      while (rec == '1') {  // izq 1 der 0
+          leer();
 
-    while (rec == 'a') {
-      leer(); 
-      motor2.rotate(0, CCW); 
-      motor.rotate(0, CCW);  
-    }
-    while (rec == 'b') {
-      leer(); 
-      motor2.rotate(0, CCW); 
-      motor.rotate(5, CCW);  
-    }
-    while (rec == 'c') {
-      leer(); 
-      motor2.rotate(0, CCW); 
-      motor.rotate(10, CCW);  
-    }
-    while (rec == 'd') {
-      leer(); 
-      motor2.rotate(0, CCW); 
-      motor.rotate(15, CCW);  
-    }
-    while (rec == 'e') {
-      leer(); 
-      motor2.rotate(0, CCW); 
-      motor.rotate(20, CCW);  
-    }
+          if (power <= 20) {
 
-////////////////////////////////////////////////////
-    
-    while (rec == 'f') {
-      leer(); 
-      motor2.rotate(5, CCW); 
-      motor.rotate(0, CCW);  
-    }
-    while (rec == 'g') {
-      leer(); 
-      motor2.rotate(5, CCW); 
-      motor.rotate(5, CCW);  
-    }
-    while (rec == 'h') {
-      leer(); 
-      motor2.rotate(5, CCW); 
-      motor.rotate(10, CCW);  
-    }
-    while (rec == 'i') {
-      leer(); 
-      motor2.rotate(5, CCW); 
-      motor.rotate(15, CCW);  
-    }
-    while (rec == 'j') {
-      leer(); 
-      motor2.rotate(5, CCW); 
-      motor.rotate(20, CCW);  
-    }
+              power++;
+          }
+          Serial.println("Hacia la derecha");
+          motor2.rotate(power, CCW);
+          motor.rotate(0, CCW);
+      }
+      while (rec == '2') {  // izq 0 der 1
+          leer();
 
-////////////////////////////////////////////////////
-    
-    while (rec == 'k') {
-      leer(); 
-      motor2.rotate(10, CCW); 
-      motor.rotate(0, CCW);  
-    }
-    while (rec == 'l') {
-      leer(); 
-      motor2.rotate(10, CCW); 
-      motor.rotate(5, CCW);  
-    }
-    while (rec == 'm') {
-      leer(); 
-      motor2.rotate(10, CCW); 
-      motor.rotate(10, CCW);  
-    }
-    while (rec == 'n') {
-      leer(); 
-      motor2.rotate(10, CCW); 
-      motor.rotate(15, CCW);  
-    }while (rec == 'o') {
-      leer(); 
-      motor2.rotate(10, CCW); 
-      motor.rotate(20, CCW);  
-    }
+          if (power <= 20) {
 
-////////////////////////////////////////////////////
+              power++;
+          }
+          Serial.println("Hacia la izquierda");
+          motor2.rotate(0, CCW);
+          motor.rotate(power, CCW);
+      }
+      while (rec == '3') {  // izq -1 der -1
+          leer();
 
-    while (rec == 'p') {
-      leer(); 
-      motor2.rotate(15, CCW); 
-      motor.rotate(0, CCW);  
-    }
-    while (rec == 'q') {
-      leer(); 
-      motor2.rotate(15, CCW); 
-      motor.rotate(5, CCW);  
-    }
-    while (rec == 'r') {
-      leer(); 
-      motor2.rotate(15, CCW); 
-      motor.rotate(10, CCW);  
-    }
-    while (rec == 's') {
-      leer(); 
-      motor2.rotate(15, CCW); 
-      motor.rotate(15, CCW);  
-    }while (rec == 't') {
-      leer(); 
-      motor2.rotate(15, CCW); 
-      motor.rotate(20, CCW);  
-    }
+          if (power <= 20) {
 
-////////////////////////////////////////////////////
-    
-    while (rec == 'u') {
-      leer(); 
-      motor2.rotate(20, CCW); 
-      motor.rotate(0, CCW);  
-    }
-    while (rec == 'v') {
-      leer(); 
-      motor2.rotate(20, CCW); 
-      motor.rotate(5, CCW);  
-    }
-    while (rec == 'w') {
-      leer(); 
-      motor2.rotate(20, CCW); 
-      motor.rotate(10, CCW);  
-    }
-    while (rec == 'x') {
-      leer(); 
-      motor2.rotate(20, CCW); 
-      motor.rotate(15, CCW);  
-    }
-    while (rec == 'y') {
-      leer(); 
-      motor2.rotate(20,CCW); 
-      motor.rotate(20,CCW);  
-    }
+              power++;
+          }
+          Serial.println("Hacia delante");
+          motor2.rotate(power, CW);
+          motor.rotate(power, CW);
+      }
+      while (rec == '4') {  // izq 1 der 1
+          leer();
+
+          if (power <= 20) {
+
+              power++;
+          }
+          Serial.println("Hacia atrás");
+          motor2.rotate(power, CCW);
+          motor.rotate(power, CCW);
+      }
   }
 }
 

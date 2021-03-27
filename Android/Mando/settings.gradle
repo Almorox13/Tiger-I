@@ -1,3 +1,0 @@
-include ':xbox'
-include ':app'
-rootProject.name = "Mando Tiger1"

@@ -5,8 +5,8 @@
       "intelliSenseMode": "windows-msvc-x86",
       "includePath": [
         "${projectRoot}..\\ProgramaArduino",
-        "${projectRoot}..\\..\\..\\Arduino\\libraries\\Robojax-BTS7960-Motor-driver",
         "C:\\Program Files\\Arduino\\hardware\\arduino\\avr\\libraries\\SoftwareSerial\\src",
+        "${projectRoot}..\\..\\..\\Arduino\\libraries\\Robojax-BTS7960-Motor-driver",
         "C:\\Program Files\\Arduino\\hardware\\arduino\\avr\\cores\\arduino",
         "C:\\Program Files\\Arduino\\hardware\\arduino\\avr\\variants\\mega",
         "C:\\Program Files\\Arduino\\hardware\\tools\\avr\\\\lib\\gcc\\avr\\7.3.0\\include",

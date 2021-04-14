@@ -109,6 +109,8 @@ void stopMotors(){
 
         Serial.println("Stop");
 
+        digitalWrite(5, 100);
+
   //-------------------------------------------------  Stop
   
 }
@@ -157,6 +159,9 @@ void tracksControl(int p2, int p3, int p4){
 
       if(p4 == 0){
 
+        digitalWrite(5, 0);
+
+
         Serial.println("1");
         //----------------------  1
         
@@ -186,6 +191,7 @@ void tracksControl(int p2, int p3, int p4){
 
       if(p4 == 0){
           Serial.println("5");
+        digitalWrite(5, 255);
 
         //----------------------  5
         

@@ -20,7 +20,14 @@ void setup()
   delay(1000);
 #endif
 
-  uduino.connectWifi("MIWIFI_2G_AuGQ", "C7P4frst");
+
+  //uduino.connectWifi("MIWIFI_5G_AuGQ", "C7P4frst");
+  uduino.connectWifi("Uduino", "abcdefgh");
+
+    analogWrite(16, 0);
+    analogWrite(5, 0);
+    analogWrite(13, 0);
+    analogWrite(15, 0);
 
   uduino.addCommand("s", SetMode);
   uduino.addCommand("d", WritePinDigital);

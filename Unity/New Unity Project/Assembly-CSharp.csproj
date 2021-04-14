@@ -291,6 +291,9 @@
     <Reference Include="UnityEditor">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.23f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Vuforia.UnityExtensions">
+      <HintPath>D:/Documentos/Tiger-I/Unity/New Unity Project/Library/PackageCache/com.ptc.vuforia.engine@28847b1d9f/Vuforia/Plugins/Managed/Runtime/Vuforia.UnityExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.23f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
     </Reference>
@@ -672,8 +675,19 @@
     <Reference Include="UnityEditor.UI">
       <HintPath>D:/Documentos/Tiger-I/Unity/New Unity Project/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
+    <Reference Include="VuforiaScripts">
+      <HintPath>D:/Documentos/Tiger-I/Unity/New Unity Project/Library/ScriptAssemblies/VuforiaScripts.dll</HintPath>
+    </Reference>
+    <Reference Include="VuforiaEditorScripts">
+      <HintPath>D:/Documentos/Tiger-I/Unity/New Unity Project/Library/ScriptAssemblies/VuforiaEditorScripts.dll</HintPath>
+    </Reference>
   </ItemGroup>
-  <ItemGroup></ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="EditorMigrationScripts.csproj">
+      <Project>{2B2A6CD4-354E-57D5-B7A9-8572618D5CEA}</Project>
+      <Name>EditorMigrationScripts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

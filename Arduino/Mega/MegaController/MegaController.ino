@@ -109,7 +109,9 @@ void stopMotors(){
 
         Serial.println("Stop");
 
-        digitalWrite(5, 100);
+        analogWrite(3, 0);
+        analogWrite(4, 0);
+
 
   //-------------------------------------------------  Stop
   
@@ -159,7 +161,8 @@ void tracksControl(int p2, int p3, int p4){
 
       if(p4 == 0){
 
-        digitalWrite(5, 0);
+        analogWrite(2, 10);
+        analogWrite(4, 10);
 
 
         Serial.println("1");
@@ -167,6 +170,8 @@ void tracksControl(int p2, int p3, int p4){
         
       }else{
         Serial.println("2");
+        analogWrite(2, 30);
+        analogWrite(4, 10);
 
         //----------------------  2
         
@@ -175,11 +180,15 @@ void tracksControl(int p2, int p3, int p4){
 
       if(p4 == 0){
         Serial.println("3");
+        analogWrite(2, 30);
+        analogWrite(4, 10);
 
         //----------------------  3
         
       }else{
         Serial.println("4");
+        analogWrite(2, 30);
+        analogWrite(4, 10);
 
         //----------------------  4
         
@@ -191,12 +200,15 @@ void tracksControl(int p2, int p3, int p4){
 
       if(p4 == 0){
           Serial.println("5");
-        digitalWrite(5, 255);
+        analogWrite(2, 30);
+        analogWrite(4, 10);
 
         //----------------------  5
         
       }else{
         Serial.println("6");
+        analogWrite(2, 30);
+        analogWrite(4, 10);
 
         //----------------------  6
         
@@ -205,11 +217,15 @@ void tracksControl(int p2, int p3, int p4){
 
       if(p4 == 0){
         Serial.println("7");
+        analogWrite(2, 30);
+        analogWrite(4, 10);
 
         //----------------------  7
         
       }else{
         Serial.println("8");
+        analogWrite(2, 30);
+        analogWrite(4, 10);
 
         //----------------------  8
         

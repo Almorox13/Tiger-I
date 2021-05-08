@@ -174,6 +174,17 @@ void BundleReadPin() {
 void loop()
 {
   uduino.update();
+
+  if(uduino.isConnected()){
+
+    Serial.println("Connected");
+  }else{
+    Serial.println("DisConnected");
+    digitalWrite(16, 0);
+    digitalWrite(5, 0);
+    digitalWrite(13, 0);
+    digitalWrite(15, 0);
+  }
   //delay(10);
 }
 

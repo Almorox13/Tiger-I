@@ -26,8 +26,6 @@ int pin2 = 41;
 int pin3 = 42;
 int pin4 = 43;
 
-
-
 void setup() {
 
 // ---------- Setup Data ---------- //
@@ -69,6 +67,13 @@ void setup() {
 
  
  Serial.begin(9600);
+ Serial.println("Iniciando");
+
+  for(int i = 0; i <= 50; i++){
+    Serial.print(".");
+    delay(200);
+  }
+ 
 }
 
 void loop() {
@@ -110,8 +115,9 @@ void stopMotors(){
         Serial.println("Stop");
 
         analogWrite(3, 0);
+        analogWrite(2, 0);
         analogWrite(4, 0);
-
+        analogWrite(5, 0);
 
   //-------------------------------------------------  Stop
   
@@ -155,24 +161,28 @@ void moveCannon(int p3, int p4){
 
 void tracksControl(int p2, int p3, int p4){
 
+  //   5 ------ Derecho hacia detrás
+  //   4 ------ Derecho hacia delante
+  //   3 ------ Izquierdo hacia delante
+  //   2 ------ Izquierdo hacia detrás
+
   if(p2 == 0){
 
     if(p3 == 0){
 
       if(p4 == 0){
 
-        analogWrite(2, 10);
-        analogWrite(4, 10);
-
-
+        analogWrite(4, 25);
+        analogWrite(3, 25);
         Serial.println("1");
         //----------------------  1
         
       }else{
         Serial.println("2");
-        analogWrite(2, 30);
-        analogWrite(4, 10);
+        analogWrite(4, 0);
+        analogWrite(3, 25);
 
+       
         //----------------------  2
         
       }
@@ -180,16 +190,17 @@ void tracksControl(int p2, int p3, int p4){
 
       if(p4 == 0){
         Serial.println("3");
-        analogWrite(2, 30);
-        analogWrite(4, 10);
+        analogWrite(5, 15);
+        analogWrite(3, 25);
+
 
         //----------------------  3
         
       }else{
         Serial.println("4");
-        analogWrite(2, 30);
-        analogWrite(4, 10);
-
+        analogWrite(2, 25);
+        analogWrite(3, 0);
+        
         //----------------------  4
         
       }
@@ -200,15 +211,16 @@ void tracksControl(int p2, int p3, int p4){
 
       if(p4 == 0){
           Serial.println("5");
-        analogWrite(2, 30);
-        analogWrite(4, 10);
+        analogWrite(5, 25);
+        analogWrite(2, 25);
+
 
         //----------------------  5
         
       }else{
         Serial.println("6");
-        analogWrite(2, 30);
-        analogWrite(4, 10);
+        analogWrite(5, 25);
+        analogWrite(2, 0);
 
         //----------------------  6
         
@@ -217,16 +229,15 @@ void tracksControl(int p2, int p3, int p4){
 
       if(p4 == 0){
         Serial.println("7");
-        analogWrite(2, 30);
-        analogWrite(4, 10);
+        analogWrite(2, 15);
+        analogWrite(4, 25);
 
         //----------------------  7
         
       }else{
         Serial.println("8");
-        analogWrite(2, 30);
-        analogWrite(4, 10);
-
+        analogWrite(4, 25);
+        analogWrite(3, 0);
         //----------------------  8
         
       }

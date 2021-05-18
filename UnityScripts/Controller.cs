@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Uduino;
+using UnityEngine.InputSystem;
 
 public class Controller : MonoBehaviour
 {
+    Gamepad gp = null;
+
     float x;
     float y;
 
     void Start()
     {
+        gp = InputSystem.GetDevice<Gamepad>();
+
         UduinoManager.Instance.pinMode(16, PinMode.Output);
         UduinoManager.Instance.pinMode(5, PinMode.Output);
         UduinoManager.Instance.pinMode(13, PinMode.Output);
@@ -19,8 +24,9 @@ public class Controller : MonoBehaviour
     void FixedUpdate()
     {
 
-        x = Input.GetAxis("Horizontal");
-        y = Input.GetAxis("Vertical");
+        x = gp.leftStick.ReadValue().x;
+        y = gp.leftStick.ReadValue().y;
+
 
         if ((x < 0.4) && (y < 0.4) && (x > -0.4) && (y > -0.4)) //----------> Movimiento Detenido
         {

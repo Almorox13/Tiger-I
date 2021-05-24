@@ -1,5 +1,5 @@
 #include <Servo.h> 
-
+#include <Stepper.h>     
 // ---------- Pins Motor 1 ---------- //
 
 int a_R_PWM = 2;
@@ -27,7 +27,18 @@ int pin2 = 41;
 int pin3 = 42;
 int pin4 = 43;
 
+// ---------- Cañón y torreta ---------- //
+
+int posCannon = 0;
+Servo cannon;
+Stepper stepper(2048, 8, 10, 9, 11);
+
+
 void setup() {
+
+// ---------- Setup Stepper ----------//
+
+  stepper.setSpeed(17);
 
 // ---------- Setup Data ---------- //
 
@@ -35,6 +46,8 @@ void setup() {
  pinMode(pin2, INPUT);
  pinMode(pin3, INPUT);
  pinMode(pin4, INPUT);
+
+cannon.attach(13);
 
 
 // ---------- Setup Motor 1 ---------- //
@@ -66,9 +79,7 @@ void setup() {
  digitalWrite(b_R_EN, HIGH);
  digitalWrite(b_L_EN, HIGH);
 
- Servo cannon;
- cannon.attach(13);
- int posCannon = 0;
+ 
  
  Serial.begin(9600);
  Serial.println("Iniciando");
@@ -89,7 +100,7 @@ void loop() {
   int p3 = digitalRead(pin3);
   int p4 = digitalRead(pin4);
 
-  //Serial.println(String(p1) + "  " + String(p2) + "  " + String(p3) + "  " + String(p4));
+  Serial.println(String(p1) + "  " + String(p2) + "  " + String(p3) + "  " + String(p4));
 
   delay(50);
 
@@ -132,16 +143,19 @@ void moveTorret(int p3, int p4){
   if(p3 == 0){
     if(p4 == 0){
 
+      digitalWrite(8, LOW);     
+      digitalWrite(9, LOW);
+      digitalWrite(10, LOW);
+      digitalWrite(11, LOW);
+
       //----------------------------------------------  Parar Torreta
       
     }else{
 
-      //----------------------------------------------  Torreta Izq
-     
+      stepper.step(1000000);
     }
   }else{
-
-      //----------------------------------------------  Torreta Der
+      stepper.step(-1000000);
   }
 }
 
@@ -150,19 +164,28 @@ void moveCannon(int p3, int p4){
   if(p3 == 1){
     if(p4 == 0){
 
-      pos = pos + 2;
-      cannon.write(pos);
-    
-    }else{
 
-      //----------------------------------------------  Cañon Stop
-     
+      if(posCannon < 170){
+        posCannon = posCannon + 10;
+        cannon.write(posCannon);
+      }
+
+      Serial.println(posCannon);
+    }else{
+      
     }
   }else{
 
-      pos = pos - 2;
-      cannon.write(pos);
-      
+    if(p4 == 1){
+
+      Serial.println(posCannon);
+  
+      if(posCannon > 10){
+        posCannon = posCannon - 10;
+        cannon.write(posCannon);
+        Serial.println(posCannon);
+      }
+    }
   }
 }
 

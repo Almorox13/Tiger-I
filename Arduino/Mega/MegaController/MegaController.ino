@@ -1,5 +1,16 @@
 #include <Servo.h> 
-#include <Stepper.h>     
+#include <AccelStepper.h> 
+
+// ---------- Pins Stepper ---------- //
+
+#define HALFSTEP 8
+#define motorPin1 8 
+#define motorPin2 9 
+#define motorPin3 10
+#define motorPin4 11
+AccelStepper stepper(HALFSTEP, motorPin1, motorPin3, motorPin2, motorPin4);
+
+
 // ---------- Pins Motor 1 ---------- //
 
 int a_R_PWM = 2;
@@ -31,15 +42,14 @@ int pin4 = 43;
 
 int posCannon = 0;
 Servo cannon;
-Stepper stepper(2048, 8, 10, 9, 11);
 
 
 void setup() {
 
 // ---------- Setup Stepper ----------//
 
-  stepper.setSpeed(17);
-
+ stepper.setMaxSpeed(2000);
+ 
 // ---------- Setup Data ---------- //
 
  pinMode(pin1, INPUT);
@@ -151,11 +161,15 @@ void moveTorret(int p3, int p4){
       //----------------------------------------------  Parar Torreta
       
     }else{
-
-      stepper.step(1000000);
+      stepper.setSpeed(-200);  
+      stepper.runSpeed();
     }
   }else{
-      stepper.step(-1000000);
+
+    Serial.print("osjkdlfnsdf");
+    
+     stepper.setSpeed(200);  
+     stepper.runSpeed();
   }
 }
 

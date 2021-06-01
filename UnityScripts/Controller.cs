@@ -6,11 +6,9 @@ using UnityEngine.InputSystem;
 
 public class Controller : MonoBehaviour
 {
-    Gamepad gp = null;
-    float cannon;
-    float x;
-    float y;
-    bool parado = false;
+    private Gamepad gp = null;
+    private float moveX;
+    private float moveY;
 
     void Start()
     {
@@ -24,135 +22,84 @@ public class Controller : MonoBehaviour
 
     void FixedUpdate()
     {
-
-        x = gp.leftStick.ReadValue().x;
-        y = gp.leftStick.ReadValue().y;
-        cannon = gp.rightStick.ReadValue().y;
-        Debug.Log(cannon);
-
-        if ((x < 0.4) && (y < 0.4) && (x > -0.4) && (y > -0.4) && (parado == false))
+        moveX = gp.leftStick.ReadValue().x;
+        moveY = gp.leftStick.ReadValue().y;
+        
+        if ((moveX < 0.4) && (moveX > -0.4) && (moveY < 0.4) && (moveY > -0.4))
             {
-
-            parado = true;
 
             UduinoManager.Instance.digitalWrite(16, 0);
             UduinoManager.Instance.digitalWrite(5, 0);
             UduinoManager.Instance.digitalWrite(13, 0);
             UduinoManager.Instance.digitalWrite(15, 0);
               
-            Debug.Log("Stop");
+            Debug.Log("Parar Orugas");
         }
         else
         {
-            if ((x > 0.4) && (y < 0.4) && (y > -0.4)) //------------------------> Movimiento Hacia la Derecha
+            if ((moveX > 0.4) && (moveY < 0.4) && (moveY > -0.4)) //------------------------> Movimiento Hacia la Derecha
             {
                 UduinoManager.Instance.digitalWrite(16, 255);
                 UduinoManager.Instance.digitalWrite(5, 0);
                 UduinoManager.Instance.digitalWrite(13, 255);
                 UduinoManager.Instance.digitalWrite(15, 0);
-
-                parado = false;
-
-                Debug.Log("3.  x: " + x + " y: " + y);
             }
 
-            if ((x < -0.4) && (y < 0.4) && (y > -0.4)) //-----------------------> Movimiento Hacia la Izquierda
+            if ((moveX < -0.4) && (moveY < 0.4) && (moveY > -0.4)) //-----------------------> Movimiento Hacia la Izquierda
             {
                 UduinoManager.Instance.digitalWrite(16, 255);
                 UduinoManager.Instance.digitalWrite(5, 255);
                 UduinoManager.Instance.digitalWrite(13, 255);
                 UduinoManager.Instance.digitalWrite(15, 0);
-                parado = false;
-
-                Debug.Log("7.  x: " + x + " y: " + y);
             }
 
-            if ((y > 0.4) && (x > -0.4) && (x < 0.4)) //------------------------> Movimiento Hacia Delante
+            if ((moveY > 0.4) && (moveX > -0.4) && (moveX < 0.4)) //------------------------> Movimiento Hacia Delante
             {
                 UduinoManager.Instance.digitalWrite(16, 255);
                 UduinoManager.Instance.digitalWrite(5, 0);
                 UduinoManager.Instance.digitalWrite(13, 0);
                 UduinoManager.Instance.digitalWrite(15, 0);
-                parado = false;
-
-                Debug.Log("1.  x: " + x + " y: " + y);
             }
 
-            if ((y < -0.4) && (x > -0.4) && (x < 0.4)) //-----------------------> Movimiento Hacia Atrás
+            if ((moveY < -0.4) && (moveX > -0.4) && (moveX < 0.4)) //-----------------------> Movimiento Hacia Atrás
             {
                 UduinoManager.Instance.digitalWrite(16, 255);
                 UduinoManager.Instance.digitalWrite(5, 255);
                 UduinoManager.Instance.digitalWrite(13, 0);
                 UduinoManager.Instance.digitalWrite(15, 0);
-                parado = false;
-
-                Debug.Log("5.  x: " + x + " y: " + y);
             }
 
-            if ((y > 0.4) && (x > 0.4)) //--------------------------------------> Movimiento Diagonal Superior Derecha
+            if ((moveY > 0.4) && (moveX > 0.4)) //--------------------------------------> Movimiento Diagonal Superior Derecha
             {
                 UduinoManager.Instance.digitalWrite(16, 255);
                 UduinoManager.Instance.digitalWrite(5, 0);
                 UduinoManager.Instance.digitalWrite(13, 0);
                 UduinoManager.Instance.digitalWrite(15, 255);
-                parado = false;
-
-                Debug.Log("2.  x: " + x + " y: " + y);
             }
 
-            if ((y < -0.4) && (x > 0.4)) //-------------------------------------> Movimiento Diagonal Inferior Derecha
+            if ((moveY < -0.4) && (moveX > 0.4)) //-------------------------------------> Movimiento Diagonal Inferior Derecha
             {
                 UduinoManager.Instance.digitalWrite(16, 255);
                 UduinoManager.Instance.digitalWrite(5, 0);
                 UduinoManager.Instance.digitalWrite(13, 255);
                 UduinoManager.Instance.digitalWrite(15, 255);
-                parado = false;
-
-                Debug.Log("4.  x: " + x + " y: " + y);
             }
 
-            if ((y > 0.4) && (x < -0.4)) //-------------------------------------> Movimiento Diagonal Superior Izquierda
+            if ((moveY > 0.4) && (moveX < -0.4)) //-------------------------------------> Movimiento Diagonal Superior Izquierda
             {
                 UduinoManager.Instance.digitalWrite(16, 255);
                 UduinoManager.Instance.digitalWrite(5, 255);
                 UduinoManager.Instance.digitalWrite(13, 255);
                 UduinoManager.Instance.digitalWrite(15, 255);
-                parado = false;
-
-                Debug.Log("8.  x: " + x + " y: " + y);
             }
 
-            if ((y < -0.4) && (x < -0.4)) //------------------------------------> Movimiento Diagonal Inferior Izquierda
+            if ((moveY < -0.4) && (moveX < -0.4)) //------------------------------------> Movimiento Diagonal Inferior Izquierda
             {
                 UduinoManager.Instance.digitalWrite(16, 255);
                 UduinoManager.Instance.digitalWrite(5, 255);
                 UduinoManager.Instance.digitalWrite(13, 0);
                 UduinoManager.Instance.digitalWrite(15, 255);
-                parado = false;
-
-                Debug.Log("6.  x: " + x + " y: " + y);
             }
-
-        }   
-        if (cannon > 0.4)
-        {
-                UduinoManager.Instance.digitalWrite(16, 0);
-                UduinoManager.Instance.digitalWrite(5, 0);
-                UduinoManager.Instance.digitalWrite(13, 255);
-                UduinoManager.Instance.digitalWrite(15, 0);
-
-                Debug.Log("Cañon arriba");
         }
-        if (cannon < -0.4)
-        {
-                UduinoManager.Instance.digitalWrite(16, 0);
-                UduinoManager.Instance.digitalWrite(5, 0);
-                UduinoManager.Instance.digitalWrite(13, 0);
-                UduinoManager.Instance.digitalWrite(15, 255);
-
-                Debug.Log("Cañon abajo");
-
-        }
-     
     }
 }

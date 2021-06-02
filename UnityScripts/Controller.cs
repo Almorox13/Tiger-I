@@ -9,6 +9,7 @@ public class Controller : MonoBehaviour
     private Gamepad gp = null;
     private float moveX;
     private float moveY;
+    private float cañon;
 
     void Start()
     {
@@ -24,8 +25,9 @@ public class Controller : MonoBehaviour
     {
         moveX = gp.leftStick.ReadValue().x;
         moveY = gp.leftStick.ReadValue().y;
+        cañon = gp.rightStick.ReadValue().y;
         
-        if ((moveX < 0.4) && (moveX > -0.4) && (moveY < 0.4) && (moveY > -0.4))
+        if ((moveX < 0.4) && (moveX > -0.4) && (moveY < 0.4) && (moveY > -0.4) && (cañon < 0.4) && (cañon > -0.4))
             {
 
             UduinoManager.Instance.digitalWrite(16, 0);
@@ -33,7 +35,7 @@ public class Controller : MonoBehaviour
             UduinoManager.Instance.digitalWrite(13, 0);
             UduinoManager.Instance.digitalWrite(15, 0);
               
-            Debug.Log("Parar Orugas");
+            Debug.Log("Parar Orugas"); // --------------------------------------------------> Parar Todo
         }
         else
         {
@@ -100,6 +102,20 @@ public class Controller : MonoBehaviour
                 UduinoManager.Instance.digitalWrite(13, 0);
                 UduinoManager.Instance.digitalWrite(15, 255);
             }
+        }
+        if (cañon > 0.4) 
+        {
+            UduinoManager.Instance.digitalWrite(16, 0);
+            UduinoManager.Instance.digitalWrite(5, 0);
+            UduinoManager.Instance.digitalWrite(13, 255);
+            UduinoManager.Instance.digitalWrite(15, 0);
+        }
+        if (cañon < -0.4)
+        {
+            UduinoManager.Instance.digitalWrite(16, 0);
+            UduinoManager.Instance.digitalWrite(5, 0);
+            UduinoManager.Instance.digitalWrite(13, 0);
+            UduinoManager.Instance.digitalWrite(15, 255);
         }
     }
 }

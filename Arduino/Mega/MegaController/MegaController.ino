@@ -243,8 +243,8 @@ void tracksControl(int p2, int p3, int p4){
       if(p4 == 0){
         Serial.println("3");
         
-        analogWrite(5, 15);
-        analogWrite(3, 30);
+        analogWrite(5, 20);
+        analogWrite(3, 40);
 
         analogWrite(4, 0);
         analogWrite(2, 0);
@@ -294,8 +294,8 @@ void tracksControl(int p2, int p3, int p4){
 
       if(p4 == 0){
         Serial.println("7");
-        analogWrite(2, 15);
-        analogWrite(4, 30);
+        analogWrite(2, 20);
+        analogWrite(4, 40);
 
         analogWrite(5, 0);
         analogWrite(3, 0);

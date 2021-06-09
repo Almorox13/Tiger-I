@@ -3,12 +3,7 @@
 
 // ---------- Pins Stepper ---------- //
 
-#define HALFSTEP 8
-#define motorPin1 8 
-#define motorPin2 9 
-#define motorPin3 10
-#define motorPin4 11
-AccelStepper stepper(HALFSTEP, motorPin1, motorPin3, motorPin2, motorPin4);
+AccelStepper stepper(16, 8, 9, 10, 11);
 
 
 // ---------- Pins Motor 1 ---------- //
@@ -40,15 +35,17 @@ int pin4 = 43;
 
 // ---------- Cañón y torreta ---------- //
 
-int posCannon = 0;
+float posCannon = 70;
+int position = 0;
 Servo cannon;
 
 
 void setup() {
-
 // ---------- Setup Stepper ----------//
 
- stepper.setMaxSpeed(2000);
+ stepper.setMaxSpeed(1700);
+ stepper.setSpeed(1700);
+ stepper.setAcceleration(2000);
  
 // ---------- Setup Data ---------- //
 
@@ -58,7 +55,6 @@ void setup() {
  pinMode(pin4, INPUT);
 
 cannon.attach(13);
-
 
 // ---------- Setup Motor 1 ---------- //
 
@@ -89,9 +85,8 @@ cannon.attach(13);
  digitalWrite(b_R_EN, HIGH);
  digitalWrite(b_L_EN, HIGH);
 
- 
- 
  Serial.begin(9600);
+ 
  Serial.println("Iniciando");
 
   for(int i = 0; i <= 50; i++){
@@ -110,9 +105,8 @@ void loop() {
   int p3 = digitalRead(pin3);
   int p4 = digitalRead(pin4);
 
-  Serial.println(String(p1) + "  " + String(p2) + "  " + String(p3) + "  " + String(p4));
+  //Serial.println(String(p1) + "  " + String(p2) + "  " + String(p3) + "  " + String(p4));
 
-  delay(50);
 
 
  if(p1 != 1){
@@ -159,32 +153,34 @@ void moveTorret(int p3, int p4){
       digitalWrite(11, LOW);
 
       //----------------------------------------------  Parar Torreta
-      
+
+      Serial.println(position);
     }else{
-      stepper.setSpeed(-200);  
-      stepper.runSpeed();
+      position = position + 1;
+      stepper.moveTo(position);
+      stepper.run();
+
     }
   }else{
 
-    Serial.print("osjkdlfnsdf");
-    
-     stepper.setSpeed(200);  
-     stepper.runSpeed();
+    position = position - 1;
+    stepper.moveTo(position);
+    stepper.run();
+
   }
 }
 
 void moveCannon(int p3, int p4){
-
+  int aux = 0;
   if(p3 == 1){
     if(p4 == 0){
 
 
-      if(posCannon < 170){
-        posCannon = posCannon + 10;
+      if(posCannon < 96.0){
+        posCannon = posCannon + 0.1;
+        aux = round(posCannon);
         cannon.write(posCannon);
       }
-
-      Serial.println(posCannon);
     }else{
       
     }
@@ -192,12 +188,11 @@ void moveCannon(int p3, int p4){
 
     if(p4 == 1){
 
-      Serial.println(posCannon);
-  
-      if(posCannon > 10){
-        posCannon = posCannon - 10;
+      if(posCannon > 56.0){
+        posCannon = posCannon - 0.1;
+        aux = round(posCannon);
         cannon.write(posCannon);
-        Serial.println(posCannon);
+
       }
     }
   }

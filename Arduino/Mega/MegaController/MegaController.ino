@@ -108,7 +108,6 @@ void loop() {
   //Serial.println(String(p1) + "  " + String(p2) + "  " + String(p3) + "  " + String(p4));
 
 
-
  if(p1 != 1){
 
     if((p2 == 0) && (p3 == 0) && (p4 == 0)){
@@ -131,7 +130,6 @@ void loop() {
 
 void stopMotors(){
 
-        Serial.println("Stop");
 
         analogWrite(3, 0);
         analogWrite(2, 0);
@@ -160,12 +158,16 @@ void moveTorret(int p3, int p4){
       stepper.moveTo(position);
       stepper.run();
 
+      //0101
+
     }
   }else{
 
     position = position - 1;
     stepper.moveTo(position);
     stepper.run();
+
+    //0110
 
   }
 }
@@ -176,8 +178,8 @@ void moveCannon(int p3, int p4){
     if(p4 == 0){
 
 
-      if(posCannon < 96.0){
-        posCannon = posCannon + 0.1;
+      if(posCannon >= 56.0){
+        posCannon = posCannon - 0.1;
         aux = round(posCannon);
         cannon.write(posCannon);
       }
@@ -187,9 +189,8 @@ void moveCannon(int p3, int p4){
   }else{
 
     if(p4 == 1){
-
-      if(posCannon > 56.0){
-        posCannon = posCannon - 0.1;
+      if(posCannon <= 96.0){
+        posCannon = posCannon + 0.1;
         aux = round(posCannon);
         cannon.write(posCannon);
 
@@ -214,7 +215,7 @@ void tracksControl(int p2, int p3, int p4){
         analogWrite(5, 0);
         analogWrite(4, 25);
         
-        analogWrite(3, 25);
+        analogWrite(3, 45);
         analogWrite(2, 0);
         
         Serial.println("1");
